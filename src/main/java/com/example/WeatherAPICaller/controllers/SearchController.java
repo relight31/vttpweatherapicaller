@@ -22,10 +22,12 @@ public class SearchController {
             Model model,
             @RequestParam(name = "city") String cityName) {
         // unpack optional and handle
-        Optional<CityWeather> city = weatherService.getWeather(cityName);
-        if (city.isEmpty()) {
+        Optional<CityWeather> opt = weatherService.getWeather(cityName);
+        if (opt.isEmpty()) {
             return "notFound";
         }
-        return null;
+        CityWeather city = opt.get();
+
+        return "result";
     }
 }
